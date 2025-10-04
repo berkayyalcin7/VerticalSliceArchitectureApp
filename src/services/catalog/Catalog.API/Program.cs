@@ -3,6 +3,7 @@ using Catalog.API.Features.Categories.Create;
 using Catalog.API.Options;
 using Catalog.API.Repositories;
 using MediatR;
+using Microservice.Shared.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
@@ -20,12 +21,20 @@ builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 
 var app = builder.Build();
 
-app.AddCategoryGroupEndpointExt();
+// Set the port to 5180 to match launchSettings.json
+app.Urls.Add("http://localhost:5180");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/openapi/v1.json", "Catalog API v1");
+        c.RoutePrefix = string.Empty; // Swagger UI'yi root'ta aç
+    });
 }
+
+app.AddCategoryGroupEndpointExt();
 
 app.Run();
