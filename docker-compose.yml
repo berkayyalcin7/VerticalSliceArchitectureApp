@@ -2,7 +2,7 @@ services:
   mongo.db.catalog:
     restart: always
     image: mongo:8.0
-    container_name: mongo.db.catalog
+    container_name: mongo.db.catalog.container
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
@@ -12,7 +12,7 @@ services:
       - mongo.db.catalog:/data/db
   mongo.db.catalog.ui:
     image: mongo-express:latest
-    container_name: mongo.db.catalog.ui
+    container_name: mongo.db.catalog.ui.container
     ports:
         - "27032:8081"
     environment:
