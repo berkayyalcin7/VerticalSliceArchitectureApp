@@ -1,6 +1,24 @@
-@Catalog.API_HostAddress = http://localhost:5180
-
-GET {{Catalog.API_HostAddress}}/
+@id = 08de041d-d16d-5e74-10ff-e0a53e560000
+GET http://localhost:5180/api/categories
 Accept: application/json
+
+###
+### Create Category
+POST http://localhost:5180/api/categories
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "Headphones"
+}
+
+###
+### Get Category By Id
+GET http://localhost:5180/api/categories/{{id}}
+Content-Type: application/json
+Accept: application/json
+### 
+
+
 
 ###

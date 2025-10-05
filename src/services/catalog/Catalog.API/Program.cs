@@ -37,4 +37,6 @@ if (app.Environment.IsDevelopment())
 
 app.AddCategoryGroupEndpointExt();
 
+app.MapGet("/", () => Results.Ok("Catalog API is running"));
+
 app.Run();
